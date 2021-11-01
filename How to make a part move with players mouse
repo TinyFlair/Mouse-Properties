@@ -1,1 +1,41 @@
 
+```lua
+ 
+--- This Will Only Work In A Local Script
+
+local mouse = game.Players.LocalPlayer:GetMouse() --- Gets Players Mouse
+
+--- Now we want to print the position 
+
+local x,y,z = mouse.Hit.X,mouse.Hit.Y,mouse.Hit.Z 
+
+print(x,y,z)
+
+---Output: Xpos,Ypos,Zpos
+```
+ Now lets make a part move with the players mouse.
+
+```lua
+local RunService = game:GetService ("RunService")
+
+ local newpart = instance.new("Part",game.Workspace) ---Creates new part
+
+newpart.Size = Vector3.new(5,5,5) ---Self explanatory 
+
+local mouse = game.Players.LocalPlayer:GetMouse() --- Gets Players Mouse
+
+local x,y,z = mouse.Hit.X,mouse.Hit.Y,mouse.Hit.Z 
+
+--- Mouse.Target tells you what base part your hovering
+
+if mouse.Target == newpart then --- checking if the mouse is hovering the part
+ RunService.RenderStepped:Connect(function() --- A friendlier while true do
+
+newpart.Position = Vector3.new(x,y/game.Workspace.Baseplate.Postion,z)
+
+
+   end)
+
+end
+
+```
